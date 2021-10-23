@@ -1,8 +1,21 @@
 import React from 'react';
 import {PlayArrow} from '@mui/icons-material';
 import {Box, Fab} from '@mui/material';
+import State, {Score} from './state';
+import {connect} from 'react-redux';
+import {Dispatch} from 'redux';
 
-function App() {
+type Actions = {
+    start: () => void
+}
+
+type AppState = {
+    score: Score
+}
+
+type Props = Actions & AppState
+
+function App(props: Props) {
     return (
         <Box sx={{
             width: 1,
@@ -19,4 +32,15 @@ function App() {
     );
 }
 
-export default App;
+function mapDispatchToProps(dispatch: Dispatch): Actions {
+    return {
+        start: () => {
+        }
+    }
+}
+
+function mapStateToProps(state: State): AppState {
+    return {score: state.scores[0]}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
