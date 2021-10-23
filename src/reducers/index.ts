@@ -1,3 +1,18 @@
 import {combineReducers} from 'redux';
+import State from '../state';
+import {Actions, START} from '../actions';
 
-export default combineReducers({})
+const initialState: State = {
+    scores: []
+}
+
+function reducer(state = initialState, action: Actions) {
+    switch (action.type) {
+        case START:
+            break;
+    }
+}
+
+export default combineReducers({
+    'app': reducer
+});

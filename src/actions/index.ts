@@ -1,5 +1,7 @@
+export const START = 'Start';
+
 interface Start {
-    type: 'Start'
+    type: typeof START
 }
 
-export type Actions = Start
+export type Actions = Start;
