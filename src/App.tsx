@@ -1,6 +1,7 @@
 import React from 'react';
 import {PlayArrow} from '@mui/icons-material';
-import {Box, Fab} from '@mui/material';
+import {Box, Container, Fab, List} from '@mui/material';
+import Item from './Item';
 import State, {Score} from './state';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
@@ -21,6 +22,15 @@ function App(props: Props) {
             width: 1,
             height: 1
         }}>
+            <Container sx={{maxWidth: 'xs'}}>
+                <List>
+                    {
+                        props.score.notes.map((value) => (
+                            <Item key={value.type} note={value}/>
+                        ))
+                    }
+                </List>
+            </Container>
             <Fab sx={{
                 position: 'absolute',
                 bottom: 16,

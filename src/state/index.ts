@@ -7,7 +7,7 @@ export interface Score {
     notes: ScoreNote[]
 }
 
-interface ScoreNote {
+export interface ScoreNote {
     type: ScoreNoteType
     direction: ScoreNoteDirection
 }
