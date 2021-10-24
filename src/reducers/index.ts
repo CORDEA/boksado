@@ -2,14 +2,16 @@ import State from '../state';
 import {Actions, START} from '../actions';
 
 const initialState: State = {
-    scores: []
+    scores: [],
+    inProgress: false
 }
 
-function reducer(state = initialState, action: Actions) {
+function reducer(state = initialState, action: Actions): State {
     switch (action.type) {
         case START:
-            break;
+            return {...state, inProgress: true};
     }
+    return state;
 }
 
 export default reducer;

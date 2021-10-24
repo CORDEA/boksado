@@ -1,10 +1,11 @@
 import React from 'react';
-import {PlayArrow} from '@mui/icons-material';
+import {Pause, PlayArrow} from '@mui/icons-material';
 import {Box, Container, Fab, List} from '@mui/material';
 import Item from './Item';
 import State, {Score} from './state';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
+import {start} from './actions';
 
 type Actions = {
     start: () => void
@@ -12,6 +13,7 @@ type Actions = {
 
 type AppState = {
     score: Score
+    inProgress: boolean
 }
 
 type Props = Actions & AppState
@@ -36,7 +38,7 @@ function App(props: Props) {
                 bottom: 16,
                 right: 16
             }}>
-                <PlayArrow/>
+                {props.inProgress ? <Pause/> : <PlayArrow/>}
             </Fab>
         </Box>
     );
@@ -44,13 +46,12 @@ function App(props: Props) {
 
 function mapDispatchToProps(dispatch: Dispatch): Actions {
     return {
-        start: () => {
-        }
+        start: () => dispatch(start())
     }
 }
 
 function mapStateToProps(state: State): AppState {
-    return {score: state.scores[0]}
+    return {score: state.scores[0], inProgress: state.inProgress}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

@@ -1,5 +1,6 @@
 interface State {
     scores: Score[]
+    inProgress: boolean
 }
 
 export interface Score {
