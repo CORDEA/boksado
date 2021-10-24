@@ -12,13 +12,22 @@ export interface ScoreNote {
     direction: ScoreNoteDirection
 }
 
-enum ScoreNoteType {
+export enum ScoreNoteType {
+    jab,
+    cross,
+    hook,
+    uppercut,
 
+    weaving,
+    blocking,
+
+    empty
 }
 
-enum ScoreNoteDirection {
+export enum ScoreNoteDirection {
     left,
-    right
+    right,
+    both
 }
 
 export default State;
