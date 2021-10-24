@@ -1,4 +1,3 @@
-import {combineReducers} from 'redux';
 import State from '../state';
 import {Actions, START} from '../actions';
 
@@ -13,6 +12,4 @@ function reducer(state = initialState, action: Actions) {
     }
 }
 
-export default combineReducers({
-    'app': reducer
-});
+export default reducer;
