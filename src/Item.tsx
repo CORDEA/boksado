@@ -1,5 +1,5 @@
 import React from 'react';
-import {Paper} from '@mui/material';
+import {Divider, Paper, Stack} from '@mui/material';
 import {ScoreNote} from './state';
 
 interface Props {
@@ -8,10 +8,22 @@ interface Props {
 
 function Item(props: Props) {
     return (
-        <Paper sx={{
-            padding: 2,
-            textAlign: 'center'
-        }}>paper</Paper>
+        <Stack
+            direction='row'
+            spacing={12}
+            margin={6}
+            justifyContent='center'
+            divider={<Divider orientation='vertical' flexItem/>}>
+            <Paper sx={{
+                padding: 2,
+                textAlign: 'center'
+            }}>paper</Paper>
+
+            <Paper sx={{
+                padding: 2,
+                textAlign: 'center'
+            }}>paper</Paper>
+        </Stack>
     );
 }
 
