@@ -1,6 +1,15 @@
-import React from 'react';
+import React, {ReactComponentElement} from 'react';
 import {Divider, Paper, Stack} from '@mui/material';
-import {ScoreNote} from './state';
+import {ScoreNote, ScoreNoteType} from './state';
+import {
+    ArrowBack,
+    ArrowDownward,
+    ArrowForward,
+    ArrowUpward,
+    FastForward,
+    NotInterested,
+    PlayArrow
+} from '@mui/icons-material';
 
 interface Props {
     note: ScoreNote
@@ -25,6 +34,30 @@ function Item(props: Props) {
             }}>paper</Paper>
         </Stack>
     );
+}
+
+function findIcon(type: ScoreNoteType, isLeft: boolean): ReactComponentElement<any> | null {
+    switch (type) {
+        case ScoreNoteType.jab:
+            return <PlayArrow/>;
+        case ScoreNoteType.cross:
+            return <FastForward/>;
+        case ScoreNoteType.hook:
+            if (isLeft) {
+                return <ArrowForward/>;
+            } else {
+                return <ArrowBack/>;
+            }
+        case ScoreNoteType.uppercut:
+            return <ArrowUpward/>;
+        case ScoreNoteType.weaving:
+            return <ArrowDownward/>;
+        case ScoreNoteType.blocking:
+            return <NotInterested/>;
+        case ScoreNoteType.empty:
+            return null;
+    }
+    return null;
 }
 
 export default Item;
