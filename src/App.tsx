@@ -33,7 +33,7 @@ function App(props: Props) {
                     }
                 </List>
             </Container>
-            <Fab sx={{
+            <Fab onClick={props.start} sx={{
                 position: 'absolute',
                 bottom: 16,
                 right: 16
