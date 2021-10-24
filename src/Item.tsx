@@ -1,6 +1,6 @@
 import React, {ReactComponentElement} from 'react';
-import {Divider, Paper, Stack} from '@mui/material';
-import {ScoreNote, ScoreNoteType} from './state';
+import {Box, Divider, Paper, Stack} from '@mui/material';
+import {ScoreNote, ScoreNoteDirection, ScoreNoteType} from './state';
 import {
     ArrowBack,
     ArrowDownward,
@@ -16,6 +16,25 @@ interface Props {
 }
 
 function Item(props: Props) {
+    let leftIcon = null;
+    let rightIcon = null;
+    switch (props.note.direction) {
+        case ScoreNoteDirection.left:
+            leftIcon = findIcon(props.note.type, true);
+            break;
+        case ScoreNoteDirection.right:
+            rightIcon = findIcon(props.note.type, false);
+            break;
+        case ScoreNoteDirection.both:
+            leftIcon = findIcon(props.note.type, true);
+            rightIcon = findIcon(props.note.type, false);
+            break;
+
+    }
+
+    if (leftIcon == null && rightIcon == null) {
+        return (<Box sx={{height: 32}}/>);
+    }
     return (
         <Stack
             direction='row'
@@ -23,15 +42,21 @@ function Item(props: Props) {
             margin={6}
             justifyContent='center'
             divider={<Divider orientation='vertical' flexItem/>}>
-            <Paper sx={{
-                padding: 2,
-                textAlign: 'center'
-            }}>paper</Paper>
+            {
+                leftIcon == null ? <Box sx={{width: 56}}/> :
+                    <Paper sx={{
+                        padding: 2,
+                        textAlign: 'center'
+                    }}>{leftIcon}</Paper>
+            }
 
-            <Paper sx={{
-                padding: 2,
-                textAlign: 'center'
-            }}>paper</Paper>
+            {
+                rightIcon == null ? <Box sx={{width: 56}}/> :
+                    <Paper sx={{
+                        padding: 2,
+                        textAlign: 'center'
+                    }}>{rightIcon}</Paper>
+            }
         </Stack>
     );
 }
