@@ -1,10 +1,15 @@
 import {Dispatch} from 'redux';
 
 export const START = 'Start';
+export const STOP = 'Stop';
 export const SCROLL = 'Scroll';
 
 interface Start {
     type: typeof START
+}
+
+interface Stop {
+    type: typeof STOP
 }
 
 interface Scroll {
@@ -24,10 +29,19 @@ export function start(dispatch: Dispatch) {
     dispatch(scroll())
 }
 
+export function stop(dispatch: Dispatch) {
+    if (timer != null) {
+        window.clearInterval(timer)
+    }
+    dispatch({
+        type: STOP
+    })
+}
+
 function scroll() {
     return {
         type: SCROLL
     }
 }
 
-export type Actions = Start | Scroll;
+export type Actions = Start | Stop | Scroll;

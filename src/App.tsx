@@ -5,10 +5,11 @@ import Item from './Item';
 import State, {Score} from './state';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
-import {start} from './actions';
+import {start, stop} from './actions';
 
 type Actions = {
     start: () => void
+    stop: () => void
 }
 
 type AppState = {
@@ -33,7 +34,7 @@ function App(props: Props) {
                     }
                 </List>
             </Container>
-            <Fab onClick={props.start} sx={{
+            <Fab onClick={props.inProgress ? props.stop : props.start} sx={{
                 position: 'absolute',
                 bottom: 16,
                 right: 16
@@ -46,7 +47,8 @@ function App(props: Props) {
 
 function mapDispatchToProps(dispatch: Dispatch): Actions {
     return {
-        start: () => start(dispatch)
+        start: () => start(dispatch),
+        stop: () => stop(dispatch)
     }
 }
 
