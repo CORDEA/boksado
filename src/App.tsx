@@ -46,7 +46,7 @@ function App(props: Props) {
 
 function mapDispatchToProps(dispatch: Dispatch): Actions {
     return {
-        start: () => dispatch(start())
+        start: () => start(dispatch)
     }
 }
 
