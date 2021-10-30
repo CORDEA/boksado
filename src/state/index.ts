@@ -1,9 +1,12 @@
 interface State {
     scores: Score[]
+    currentScoreId: number
+    currentNoteIndex: number
     inProgress: boolean
 }
 
 export interface Score {
+    id: number
     name: string
     notes: ScoreNote[]
 }

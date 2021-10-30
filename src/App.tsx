@@ -14,6 +14,7 @@ type Actions = {
 
 type AppState = {
     score: Score
+    currentNoteIndex: number
     inProgress: boolean
 }
 
@@ -28,9 +29,11 @@ function App(props: Props) {
             <Container sx={{maxWidth: 'xs'}}>
                 <List>
                     {
-                        props.score.notes.map((value) => (
-                            <Item key={value.type} note={value}/>
-                        ))
+                        props.score.notes
+                            .slice(props.currentNoteIndex)
+                            .map((value, i) => (
+                                <Item key={i} note={value}/>
+                            ))
                     }
                 </List>
             </Container>
@@ -53,7 +56,11 @@ function mapDispatchToProps(dispatch: Dispatch): Actions {
 }
 
 function mapStateToProps(state: State): AppState {
-    return {score: state.scores[0], inProgress: state.inProgress}
+    return {
+        score: state.scores[0],
+        currentNoteIndex: state.currentNoteIndex,
+        inProgress: state.inProgress
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
