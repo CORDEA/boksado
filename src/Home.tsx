@@ -4,8 +4,11 @@ import {Box, Container, Fab, List, ListItem, ListItemText} from '@mui/material';
 import State, {Score} from './state';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
+import {selectScore} from './actions';
 
-type Actions = {}
+type Actions = {
+    select: (id: number) => void
+}
 
 type AppState = {
     scores: Score[]
@@ -23,7 +26,7 @@ function Home(props: Props) {
                 <List>
                     {
                         props.scores.map((score) => (
-                            <ListItem>
+                            <ListItem onClick={() => props.select(score.id)}>
                                 <ListItemText primary={score.name}/>
                             </ListItem>
                         ))
@@ -42,7 +45,9 @@ function Home(props: Props) {
 }
 
 function mapDispatchToProps(dispatch: Dispatch): Actions {
-    return {}
+    return {
+        select: id => selectScore(dispatch, id)
+    }
 }
 
 function mapStateToProps(state: State): AppState {

@@ -3,6 +3,7 @@ import {Dispatch} from 'redux';
 export const START = 'Start';
 export const STOP = 'Stop';
 export const SCROLL = 'Scroll';
+export const SELECT_SCORE = 'SelectScore';
 
 interface Start {
     type: typeof START
@@ -14,6 +15,11 @@ interface Stop {
 
 interface Scroll {
     type: typeof SCROLL
+}
+
+interface SelectScore {
+    type: typeof SELECT_SCORE
+    id: number
 }
 
 let timer: number | null = null;
@@ -38,10 +44,17 @@ export function stop(dispatch: Dispatch) {
     })
 }
 
+export function selectScore(dispatch: Dispatch, id: number) {
+    dispatch({
+        type: SELECT_SCORE,
+        id: id
+    })
+}
+
 function scroll() {
     return {
         type: SCROLL
     }
 }
 
-export type Actions = Start | Stop | Scroll;
+export type Actions = Start | Stop | Scroll | SelectScore;
