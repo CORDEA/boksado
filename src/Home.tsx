@@ -1,6 +1,6 @@
 import React from 'react';
 import {ArrowForward} from '@mui/icons-material';
-import {Box, Container, Fab} from '@mui/material';
+import {Box, Container, Fab, List, ListItem, ListItemText} from '@mui/material';
 import State, {Score} from './state';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
@@ -19,7 +19,16 @@ function Home(props: Props) {
             width: 1,
             height: 1
         }}>
-            <Container sx={{maxWidth: 'xs'}}>
+            <Container sx={{maxWidth: 'xs', my: 4}}>
+                <List>
+                    {
+                        props.scores.map((score) => (
+                            <ListItem>
+                                <ListItemText primary={score.name}/>
+                            </ListItem>
+                        ))
+                    }
+                </List>
             </Container>
             <Fab sx={{
                 position: 'absolute',
