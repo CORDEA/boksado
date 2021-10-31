@@ -26,7 +26,7 @@ function Home(props: Props) {
                 <List>
                     {
                         props.scores.map((score) => (
-                            <ListItem>
+                            <ListItem key={score.id}>
                                 <ListItemButton onClick={() => props.select(score.id)}>
                                     <ListItemText primary={score.name}/>
                                 </ListItemButton>
