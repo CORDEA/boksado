@@ -1,9 +1,9 @@
 import State from '../state';
-import {Actions, SCROLL, START, STOP} from '../actions';
+import {Actions, SCROLL, SELECT_SCORE, START, STOP} from '../actions';
 
 const initialState: State = {
     scores: [],
-    currentScoreId: 0,
+    currentScoreId: -1,
     currentNoteIndex: 0,
     inProgress: false
 }
@@ -24,6 +24,9 @@ function reducer(state = initialState, action: Actions): State {
                         : state.currentNoteIndex
                 };
             }
+            break;
+        case SELECT_SCORE:
+            return {...state, currentScoreId: action.id};
     }
     return state;
 }

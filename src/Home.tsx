@@ -1,6 +1,6 @@
 import React from 'react';
 import {ArrowForward} from '@mui/icons-material';
-import {Box, Container, Fab, List, ListItem, ListItemText} from '@mui/material';
+import {Box, Container, Fab, List, ListItem, ListItemButton, ListItemText} from '@mui/material';
 import State, {Score} from './state';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
@@ -26,8 +26,10 @@ function Home(props: Props) {
                 <List>
                     {
                         props.scores.map((score) => (
-                            <ListItem onClick={() => props.select(score.id)}>
-                                <ListItemText primary={score.name}/>
+                            <ListItem>
+                                <ListItemButton onClick={() => props.select(score.id)}>
+                                    <ListItemText primary={score.name}/>
+                                </ListItemButton>
                             </ListItem>
                         ))
                     }

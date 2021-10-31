@@ -3,17 +3,21 @@ import State from './state';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
 import Home from './Home';
+import Player from './Player';
 
 type Actions = {}
 
-type AppState = {}
+type AppState = {
+    currentScoreId: number
+}
 
 type Props = Actions & AppState
 
 function App(props: Props) {
-    return (
-        <Home/>
-    );
+    if (props.currentScoreId >= 0) {
+        return (<Player/>);
+    }
+    return (<Home/>);
 }
 
 function mapDispatchToProps(dispatch: Dispatch): Actions {
@@ -21,7 +25,9 @@ function mapDispatchToProps(dispatch: Dispatch): Actions {
 }
 
 function mapStateToProps(state: State): AppState {
-    return {}
+    return {
+        currentScoreId: state.currentScoreId
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
