@@ -7,7 +7,7 @@ const initialState: State = {
     currentNoteIndex: 0,
     inProgress: false,
     speed: 1000,
-    speedQuery: ''
+    speedQuery: '1000'
 }
 
 function reducer(state = initialState, action: Actions): State {
