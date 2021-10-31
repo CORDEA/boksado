@@ -5,11 +5,12 @@ import Item from './Item';
 import State, {Score} from './state';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
-import {start, stop} from './actions';
+import {changeSpeed, start, stop} from './actions';
 
 type Actions = {
     start: () => void
     stop: () => void
+    changeSpeed: (query: string) => void
 }
 
 type AppState = {
@@ -41,6 +42,7 @@ function Player(props: Props) {
                 id='speed'
                 label='Speed'
                 variant='outlined'
+                onChange={(event) => props.changeSpeed(event.target.value)}
                 sx={{
                     position: 'absolute',
                     bottom: 16,
@@ -60,7 +62,8 @@ function Player(props: Props) {
 function mapDispatchToProps(dispatch: Dispatch): Actions {
     return {
         start: () => start(dispatch),
-        stop: () => stop(dispatch)
+        stop: () => stop(dispatch),
+        changeSpeed: (query: string) => changeSpeed(dispatch, query)
     }
 }
 
