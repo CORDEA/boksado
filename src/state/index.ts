@@ -2,6 +2,8 @@ interface State {
     scores: Score[]
     currentScoreId: number
     currentNoteIndex: number
+    speed: number
+    speedQuery: string
     inProgress: boolean
 }
 

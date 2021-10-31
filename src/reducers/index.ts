@@ -1,17 +1,19 @@
 import State from '../state';
-import {Actions, SCROLL, SELECT_SCORE, START, STOP} from '../actions';
+import {Actions, CHANGE_SPEED, SCROLL, SELECT_SCORE, START, STOP} from '../actions';
 
 const initialState: State = {
     scores: [],
     currentScoreId: -1,
     currentNoteIndex: 0,
-    inProgress: false
+    inProgress: false,
+    speed: 1000,
+    speedQuery: ''
 }
 
 function reducer(state = initialState, action: Actions): State {
     switch (action.type) {
         case START:
-            return {...state, inProgress: true};
+            return {...state, inProgress: true, speed: parseInt(state.speedQuery)};
         case STOP:
             return {...state, inProgress: false};
         case SCROLL:
@@ -27,6 +29,8 @@ function reducer(state = initialState, action: Actions): State {
             break;
         case SELECT_SCORE:
             return {...state, currentScoreId: action.id};
+        case CHANGE_SPEED:
+            return {...state, speedQuery: action.query}
     }
     return state;
 }
