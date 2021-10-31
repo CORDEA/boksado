@@ -15,6 +15,7 @@ type Actions = {
 
 type AppState = {
     score: Score
+    speed: number
     currentNoteIndex: number
     inProgress: boolean
 }
@@ -42,6 +43,7 @@ function Player(props: Props) {
                 id='speed'
                 label='Speed'
                 variant='outlined'
+                defaultValue={props.speed}
                 onChange={(event) => props.changeSpeed(event.target.value)}
                 sx={{
                     position: 'absolute',
@@ -71,6 +73,7 @@ function mapStateToProps(state: State): AppState {
     return {
         score: state.scores[0],
         currentNoteIndex: state.currentNoteIndex,
+        speed: state.speed,
         inProgress: state.inProgress
     }
 }
