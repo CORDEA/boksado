@@ -13,7 +13,7 @@ const initialState: State = {
 function reducer(state = initialState, action: Actions): State {
     switch (action.type) {
         case START:
-            return {...state, inProgress: true, speed: parseInt(state.speedQuery)};
+            return {...state, inProgress: true, speed: action.speed};
         case STOP:
             return {...state, inProgress: false};
         case SCROLL:

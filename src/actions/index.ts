@@ -8,6 +8,7 @@ export const CHANGE_SPEED = 'ChangeSpeed';
 
 interface Start {
     type: typeof START
+    speed: number
 }
 
 interface Stop {
@@ -30,13 +31,15 @@ interface ChangeSpeed {
 
 let timer: number | null = null;
 
-export function start(dispatch: Dispatch) {
+export function start(dispatch: Dispatch, speedQuery: string) {
     if (timer != null) {
         window.clearInterval(timer)
     }
-    timer = window.setInterval(() => dispatch(scroll()), 500)
+    const speed = parseInt(speedQuery);
+    timer = window.setInterval(() => dispatch(scroll()), speed)
     dispatch({
-        type: START
+        type: START,
+        speed: speed
     })
     dispatch(scroll())
 }

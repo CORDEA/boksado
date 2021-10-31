@@ -8,7 +8,7 @@ import {Dispatch} from 'redux';
 import {changeSpeed, start, stop} from './actions';
 
 type Actions = {
-    start: () => void
+    start: (speedQuery: string) => void
     stop: () => void
     changeSpeed: (query: string) => void
 }
@@ -16,6 +16,7 @@ type Actions = {
 type AppState = {
     score: Score
     speed: number
+    speedQuery: string
     currentNoteIndex: number
     inProgress: boolean
 }
@@ -50,7 +51,7 @@ function Player(props: Props) {
                     bottom: 16,
                     left: 16
                 }}/>
-            <Fab onClick={props.inProgress ? props.stop : props.start} sx={{
+            <Fab onClick={props.inProgress ? props.stop : () => props.start(props.speedQuery)} sx={{
                 position: 'absolute',
                 bottom: 16,
                 right: 16
@@ -63,9 +64,9 @@ function Player(props: Props) {
 
 function mapDispatchToProps(dispatch: Dispatch): Actions {
     return {
-        start: () => start(dispatch),
+        start: (speedQuery) => start(dispatch, speedQuery),
         stop: () => stop(dispatch),
-        changeSpeed: (query: string) => changeSpeed(dispatch, query)
+        changeSpeed: (query) => changeSpeed(dispatch, query)
     }
 }
 
@@ -74,6 +75,7 @@ function mapStateToProps(state: State): AppState {
         score: state.scores[0],
         currentNoteIndex: state.currentNoteIndex,
         speed: state.speed,
+        speedQuery: state.speedQuery,
         inProgress: state.inProgress
     }
 }
