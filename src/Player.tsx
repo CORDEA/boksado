@@ -1,6 +1,6 @@
 import React from 'react';
 import {Pause, PlayArrow} from '@mui/icons-material';
-import {Box, Container, Fab, List} from '@mui/material';
+import {Box, Container, Fab, List, TextField} from '@mui/material';
 import Item from './Item';
 import State, {Score} from './state';
 import {connect} from 'react-redux';
@@ -37,6 +37,15 @@ function Player(props: Props) {
                     }
                 </List>
             </Container>
+            <TextField
+                id='speed'
+                label='Speed'
+                variant='outlined'
+                sx={{
+                    position: 'absolute',
+                    bottom: 16,
+                    left: 16
+                }}/>
             <Fab onClick={props.inProgress ? props.stop : props.start} sx={{
                 position: 'absolute',
                 bottom: 16,
