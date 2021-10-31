@@ -1,6 +1,5 @@
 import React from 'react';
-import {ArrowForward} from '@mui/icons-material';
-import {Box, Container, Fab, List, ListItem, ListItemButton, ListItemText} from '@mui/material';
+import {Box, Container, List, ListItem, ListItemButton, ListItemText} from '@mui/material';
 import State, {Score} from './state';
 import {connect} from 'react-redux';
 import {Dispatch} from 'redux';
@@ -35,13 +34,6 @@ function Home(props: Props) {
                     }
                 </List>
             </Container>
-            <Fab sx={{
-                position: 'absolute',
-                bottom: 16,
-                right: 16
-            }}>
-                {<ArrowForward/>}
-            </Fab>
         </Box>
     );
 }
